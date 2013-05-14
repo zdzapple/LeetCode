@@ -7,7 +7,11 @@ using namespace std;
 /**
 *  solution 1£º sort the array£¬and using binary search to find the second number 
                 such that they add up to the target; - O(nlogn)
+				note: copy the array and sort it. Don't use the origin array.
    solution 2: using hash  
+   solution 3: using two index: left/right, if sortedNumbers[left] + sortedNumbers[right] < target, left ++; else right --;
+   
+   special case: target = 8, and the vector has duplicate element whose value is 4.  
 **/        
 
 void printVector(vector<int> numbers)
@@ -28,7 +32,7 @@ void printVector(vector<int> numbers)
         return -1;
     }
 
-class Solution
+class Solution2
 {
 public:
     vector<int> twoSum(vector<int> &numbers, int target)
@@ -118,6 +122,50 @@ public:
         return -1;
     }
 
+};
+
+class Node
+{
+public:
+	int value;
+	int index;
+	Node(int val, int ind) : value(val), index(ind) {}
+};
+
+bool compare(const Node &left, const Node& right)
+{
+	return left.value < right.value ? true : false;
+}
+
+class Solution
+{
+public:
+    vector<int> twoSum(vector<int> &numbers, int target)
+    {
+         int left, right;
+		 int i, j;
+         vector<Node> nodes;   
+		 vector<int> result;
+         for (i = 0; i < numbers.size(); ++ i) {
+            nodes.push_back(Node(numbers[i], i + 1));
+         }
+		 sort(nodes.begin(), nodes.end(), compare);
+		 left = 0, right = nodes.size() - 1;
+		 while (left <= right)
+		 {
+			if (nodes[left].value + nodes[right].value == target) {
+				int minIndex = min(nodes[left].index, nodes[right].index);
+				int maxIndex = max(nodes[left].index, nodes[right].index);
+				result.push_back(minIndex);
+				result.push_back(maxIndex);
+				return result;
+			} 
+			if (nodes[left].value + nodes[right].value < target)
+				left ++;
+			else
+				right --;
+		 }
+	}			 
 };
 
 
