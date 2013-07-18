@@ -88,7 +88,7 @@ public:
         
     }
 	
-	/** note: &type, don't just use ListNode* result, instead use ListNode*& result **/
+	/** note: &type, don't just use ListNode* result, use ListNode*& result instead**/
 	void copyToResult(ListNode*& result, ListNode*& rp, ListNode*& p)
 	{
 		if (result == NULL) {

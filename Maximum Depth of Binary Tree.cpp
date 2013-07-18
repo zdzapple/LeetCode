@@ -10,18 +10,7 @@
 class Solution 
 {
 public:
-	int minDepth(TreeNode *root)
-	{
-		if (root == NULL)
-			return 0;
-		int left = minDepth(root->left) + 1;
-		int right = minDepth(root->right) + 1;
-		if (left == 1 || right == 1)
-			return left < right ? right : left;
-		return left < right ? left : right;
-	}
-	
-    int minDepthBFS(TreeNode *root) 
+    int maxDepth(TreeNode *root) 
 	{
         if (root == NULL)
 			return 0;
@@ -37,9 +26,6 @@ public:
 				TreeNode *r = q.front();
 				q.pop();
 				lastLevelNum --;
-				if (r->left == NULL && r->right == NULL) {
-					return depth;
-				}
 				if (r->left != NULL) {
 					q.push(r->left);
 					levelNum ++;
@@ -49,11 +35,14 @@ public:
 					levelNum ++;
 				}
 			}
+			if (levelNum == 0)
+				return depth;
 			depth ++;
 			lastLevelNum = levelNum;
 			levelNum = 0;
 			
 		}
         return depth;
+        
     }
 };
