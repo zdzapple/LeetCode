@@ -44,3 +44,39 @@ public:
 		return result;
     }
 };
+
+/**
+class Solution {
+public:
+    vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
+
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int insertp = findPosition(intervals, newInterval);
+        intervals.insert(intervals.begin() + insertp, newInterval);
+        for (int i = 0; i < intervals.size() - 1; ++i) {
+            if (intervals[i].end >= intervals[i + 1].start) {
+                if (intervals[i].end < intervals[i + 1].end) {
+                    intervals[i].end = intervals[i + 1].end;
+                }
+                intervals.erase(intervals.begin() + i + 1);
+                --i;
+            }
+        }
+        return intervals;
+    }
+
+    int findPosition(vector<Interval> &intervals, Interval newInterval) {
+        int low = 0;
+        int high = intervals.size() - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (intervals[mid].start == newInterval.start) return mid;
+            else if (intervals[mid].start < newInterval.start) low = mid + 1;
+            else high = mid - 1;
+        }
+        return low;
+    }
+};
+
+**/
