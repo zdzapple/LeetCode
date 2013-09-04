@@ -41,7 +41,7 @@ public:
 			s.pop();
 			sum = max(sum, e.height * (i - e.id));
 		}
-       return sum;  
+        return sum;  
 	}
 
 	// Time Limit Exceeded: 1 1 1 1 1 .... 1 1 1 s

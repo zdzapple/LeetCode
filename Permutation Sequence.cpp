@@ -29,12 +29,12 @@ public:
 		string str;
 		for (int i = 0; i < n; ++ i)
 		{
-			permCount = permCount / (n-i);
+			permCount = permCount / (n - i);
 			int index = k / permCount;
 			str.push_back(num[index] + '0');
-			for (int j = index; j < n-i; ++ j)
-				num[j] = num[j+1];
-			k = k%permCount;
+			for (int j = index; j < n - i - 1; ++ j) // erase the chosen number
+				num[j] = num[j + 1];
+			k = k % permCount;
 		}
 		return str;
 	}

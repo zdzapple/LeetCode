@@ -10,6 +10,7 @@ public:
 		{
 			if (A[i] > 0 && A[i] < n + 1) {
 				if (A[i] - 1 != i && A[A[i] - 1] != A[i]) { // case: [1, 1]
+				// put A[i] to the right place
 					int temp = A[A[i] - 1];
 					A[A[i] - 1] = A[i];
 					A[i] = temp;

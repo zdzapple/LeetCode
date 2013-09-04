@@ -63,29 +63,60 @@ public:
 		if (*s != '\0' && *p == '\0')
 			return false;
 		// dp[i][j] = isMatch(s[0..i], p[0..j]);
-		// don't work so well to deal with the situation that p[j] == '*'
+		// note: how to Initialization dp[][]
 		int m = strlen(s);
 		int n = strlen(p);
-		int np_max = 1;
+		int np_max = 0;
+		int star_num = 0;
         const char* pp = p;
-        while(*pp){if (*pp != '*') ++np_max; ++ pp;}
-        if(m < np_max) return false;
+        while (*pp) 
+		{
+			if (*pp != '*') 
+				++ np_max; 
+			else
+				++ star_num;
+			++ pp;
+		}
+        if (m < np_max) return false;
+		if (star_num == 0 && m > np_max) // "aa" "a"
+			return false;
 		
 		vector<vector<int> > dp(m + 1, vector<int>(n + 1, false));
-		for (int i = 0; i < m; ++ i)
-			dp[i][0] = true;
+		//for (int i = 0; i <= m; ++ i)
+		//	dp[i][0] = true;
+		int index = 1;
+		pp = p;
+		while (*pp == '*') // case: "abc" "**c"
+		{
+			for (int i = 0; i <= m; ++ i)
+				dp[i][index] = true; // "c" "*?*"
+			pp ++;
+			index ++;
+		}
 		for (int i = 1; i <= m; ++ i)
 		{
 			for (int j = 1; j <= n; ++ j)
 			{
 				char sc = *(s+i-1);
 				char qc = *(p+j-1);
-				if (sc == qc || qc == '?') {
+				if (qc != '*' && qc != '?') {
+					dp[i][j] = dp[i-1][j-1] && (sc == qc);
+					if (i == 1 && j == 1)
+						dp[i][j] = sc == qc;
+				} else if (qc == '?') {
 					dp[i][j] = dp[i-1][j-1];
-				} else if (qc == '*') {
-					dp[i][j] = true;
+					if (i == 1 && j == 1)
+						dp[i][j] = true;
 				} else {
-					// dp[i][j] = false;
+					// '*'
+					if (!dp[i][j])						
+					for (int k = i; k >= 1; -- k)
+					{	
+						if (dp[k][j-1]) {
+							dp[i][j] = true;
+							break;
+						}
+					}
 				}
 			}
 		}

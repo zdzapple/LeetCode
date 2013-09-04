@@ -77,3 +77,25 @@ public:
         
     }
 };
+
+/**
+class Solution {
+public:
+    vector< vector<int> > subsets(vector<int>& numbers) {
+        vector< vector<int> > result;
+        sort(numbers.begin(), numbers.end());
+        // Loop from 0 to 2^n - 1
+        for (int x = 0; x < (1 << numbers.size()); ++x) {
+            vector<int> sln;
+            for (int i = 0; i < numbers.size(); ++i)
+                // If the i-th least significant bit is 1, then choose
+                // the i-th integer
+                if (x & (1 << i))
+                    sln.push_back(numbers[i]);
+            result.push_back(sln);
+        }
+        return result;
+    }
+};
+
+**/

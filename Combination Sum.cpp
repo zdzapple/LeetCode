@@ -41,9 +41,9 @@ sum[i] = sum{sum[j], target - j}
 
 class Solution {
 public:
-    vector<vector<int> > combinationSum(vector<int> &candidates, int target) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
+    vector<vector<int> > combinationSum(vector<int> &candidates, int target) 
+	{
+        
         vector< vector <vector<int> > > sum(target+1);
         for (int i = 1; i <= target; ++i)
         {

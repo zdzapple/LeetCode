@@ -1,7 +1,7 @@
 class Solution 
 {
 public:
-	vector<string> split(string& str,const char* c)
+	vector<string> split(string& str, const char* c)
 	{
 		char *cstr, *p;
 		vector<string> res;

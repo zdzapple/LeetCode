@@ -20,7 +20,7 @@ public:
 		int sign = 1; // 1 - plus, -1 - minus
 		if (*str == '\0')
 			return 0;
-		while (*str != '\0' && *str ==' ')
+		while (*str != '\0' && *str ==' ') // isspace
 			str ++;
 		if (*str == '\0')
 			return 0;

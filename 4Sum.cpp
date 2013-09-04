@@ -5,7 +5,7 @@ public:
 	{
 		vector<vector<int> > results;
 		int n = num.size();
-		if(n < 4) return results;
+		if (n < 4) return results;
 
 		sort(num.begin(), num.end());
 		int temp = 0;
@@ -13,30 +13,30 @@ public:
 		int i = 0;
 		while (i < n-3) 
 		{
-			int j = i+1;
+			int j = i + 1;
 			while (j < n-2) 
 			{
 				int p = j + 1, q = n - 1;
 				while (p < q) 
 				{
-				int sum = num[i] + num[j] + num[p] + num[q];
-				if (sum == target) 
-				{
-					 quad[0] = num[i];
-					 quad[1] = num[j];
-					 quad[2] = num[p];
-					 quad[3] = num[q];
-					 results.push_back(quad);
-					 while (p<q && num[++p] == quad[2]);
-					 while (p<q && num[--q] == quad[3]);
-				 }
-				 else if (sum < target){
-					 temp = num[p];
-					 while (p < q && num[++p] == temp); 
-				 }
-				 else {
-					 temp = num[q];
-					 while (p < q && num[--q] == temp);
+					int sum = num[i] + num[j] + num[p] + num[q];
+					if (sum == target) 
+					{
+						quad[0] = num[i];
+						quad[1] = num[j];
+						quad[2] = num[p];
+						quad[3] = num[q];
+						results.push_back(quad);
+						while (p < q && num[++p] == quad[2]);
+						while (p < q && num[--q] == quad[3]);
+					}
+					else if (sum < target) {
+						temp = num[p];
+						while (p < q && num[++p] == temp); 
+					}
+					else {
+						temp = num[q];
+						while (p < q && num[--q] == temp);
 					}
 				}
 				temp = num[j];

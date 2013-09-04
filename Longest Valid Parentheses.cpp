@@ -28,7 +28,7 @@ public:
 						longestValid = max(longestValid, i - beginIndex + 1);
 					else 
 						longestValid = max(longestValid, i - st.top().index);
-					} else {
+				} else {
 					beginIndex = i + 1;
 				}
 				

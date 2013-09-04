@@ -71,3 +71,56 @@ public:
         
     }
 };
+/**
+class Solution {
+public:
+    int toNum(char c)  
+    {  
+        switch(c)  
+        {  
+            case 'I':  
+                return 1;  
+            case 'V':  
+                return 5;  
+            case 'X':  
+                return 10;  
+            case 'L':  
+                return 50;  
+            case 'C':  
+                return 100;  
+            case 'D':  
+                return 500;  
+            case 'M':  
+                return 1000;  
+            default:  
+                return 0;  
+        }  
+    } 
+    
+    int romanToInt(string s) 
+	{
+        
+        int ret = 0;
+    	for(int i = 0; i < s.size(); i++)
+		{
+			if(i + 1 < s.size())
+			{
+				if(toNum(s[i]) < toNum(s[i+1]))     // high num < low num, then minus. eg. IV = 5-1 = 4
+				{
+					ret -= toNum(s[i]);
+				}
+				else
+				{
+					ret += toNum(s[i]);
+				}
+			}
+			else
+			{
+				ret += toNum(s[i]);
+			}
+		}
+		return ret;
+    }
+};
+
+*/

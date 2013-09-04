@@ -3,7 +3,7 @@ class Solution
 public:
     string intToRoman(int num) 
 	{
-		char symbol[7] = { 'I','V','X', 'L','C', 'D','M'};
+		char symbol[7] = { 'I','V','X', 'L','C', 'D','M'}; // 1 5 10 50 100 500 1000 
 		string result;
 		int scale = 1000;
 		for (int i = 6; i >= 0; i-=2)
