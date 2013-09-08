@@ -76,3 +76,10 @@ public:
         return result;
     }
 };
+
+/**
+One might easily come up with a naive algorithm based on the 《leetcode: Best Time to Buy and Sell Stock II》 problem (I am one of them >_<), that is, find the maximum profit and second maximum profit among all the increasing intervals and add them together. This is wrong, and one counter example is: 7 9 6 1 3 2 4 7 –> [7, 9] = 2 | [1,  3] = 2 |  [2, 7] = 5, so previous algorithm will yield 2 + 5 = 7, however, obviously, (9-7) + (7-1) = 8 is a better one. This is quite different from  《leetcode: Best Time to Buy and Sell Stock II》because now we are restricted to use at most two transactions!
+
+However, the correct solution is indeed based on some previous algorithm, it is based on a similar idea in 《leetcode: Best Time to Buy and Sell Stock》. The general approach is divide and conquer. We divide the prices into [0, i] and [i, N-1] two subsets, and get the maximum profits in [0, i] and [i, N-1]. We only need one linear scan to get maximum profits in [0, i] where i is from 0 to N-1, and a second linear scan to get profits in [i, N-1] where i is again from 0 to N-1 but in a reversed way as in the first linear scan. The linear scan algorithm is exactly the same as in 《leetcode: Best Time to Buy and Sell Stock》. Lastly, we do a third linear scan to test the sum of profit[0, i] + profit[i, N-1] where i is from 0 to N-1 and we get the global maximum profit.
+
+**/
