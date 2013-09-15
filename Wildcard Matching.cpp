@@ -293,3 +293,56 @@ public:
        
     }
 };
+
+
+
+class Solution {
+public:
+    bool isMatch(const char *s, const char *p) 
+	{
+        if (*p == '\0' && *s != '\0')
+			return false;
+		if (*s == '\0') {
+			if (*p == '\0')
+				return true;
+		}
+		const char *q, *k;
+		bool isStartExist = false;
+		while (*s != '\0')
+		{
+			if (*s == *p || *p == '?') {
+				s ++;
+				p ++;
+			} else if (*p == '*') {
+				while (*p == '*')
+					p ++;
+				if (*p == '\0')
+					return true;
+				q = s;
+				k = p;
+				isStartExist = true;
+			} else {
+				if (!isStartExist)
+					return false;				
+				q ++;
+				
+				s = q;
+				p = k;
+				/**
+				TLE: isMatch(q, p)和下面else的工作一样
+				if (isMatch(q, p))
+					return true;
+				else {
+					s = q;
+					p = k;
+				}
+				**/
+			}
+		}
+		while (*p == '*')
+			p ++;
+		if (*p == '\0')	
+			return true;
+		return false;
+    }
+};

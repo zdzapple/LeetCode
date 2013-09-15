@@ -57,3 +57,35 @@ public:
         rp->next = NULL;
 	}
 };
+
+/**
+
+class Solution {
+public:
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) 
+	{
+        ListNode *result = new ListNode(-1);
+		if (l1 == NULL)
+			return l2;
+		if (l2 == NULL)
+			return l1;
+		ListNode *p = result;
+		while (l1 != NULL || l2 != NULL)
+		{
+			int val1 = l1 == NULL ? INT_MAX : l1->val;
+			int val2 = l2 == NULL ? INT_MAX : l2->val;
+			if (val1 <= val2) {
+				p->next = l1;
+				l1 = l1->next;
+			} else {
+				p->next = l2;
+				l2 = l2->next;
+			}
+			p = p->next;
+		}
+        p = result->next;
+		delete result;
+		return p;
+    }
+};
+**/
